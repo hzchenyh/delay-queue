@@ -1,10 +1,9 @@
 package com.yangwenjie.delayqueue.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
 import org.redisson.api.*;
 import org.redisson.config.Config;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Create By IntelliJ IDEA
@@ -12,13 +11,12 @@ import org.slf4j.LoggerFactory;
  * @author Yang WenJie
  * @date 2017/12/3 12:54
  */
+@Slf4j
 public class RedissonUtils {
-
-    private static final Logger logger = LoggerFactory.getLogger(RedissonUtils.class);
 
     private static RedissonClient redissonClient;
 
-    private RedissonUtils(){
+    private RedissonUtils() {
 
     }
 
@@ -28,12 +26,11 @@ public class RedissonUtils {
             long startTime = System.currentTimeMillis();
             redissonClient = Redisson.create(config);
             long endTime = System.currentTimeMillis();
-            logger.info(" initialization RedissosnClient use {}ms",endTime-startTime);
-            logger.info(" redisconfig:{} ",config.toYAML());
-        }catch (Exception e){
-            logger.error(" initialization RedissosnClient error :",e);
+            log.info(" initialization RedissosnClient use {}ms", endTime - startTime);
+            log.info(" redisconfig:{} ", config.toYAML());
+        } catch (Exception e) {
+            log.error(" initialization RedissosnClient error :", e);
         }
-
     }
 
     /**

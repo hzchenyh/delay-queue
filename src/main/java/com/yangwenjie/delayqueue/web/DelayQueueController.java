@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class DelayQueueController {
 
-    private static SnowflakeIdUtil idUtil = new SnowflakeIdUtil(1,1);
+    private static SnowflakeIdUtil idUtil = new SnowflakeIdUtil(1, 1);
 
     @ApiOperation("添加延迟任务")
-    @RequestMapping(value = "/push",method = RequestMethod.POST)
+    @RequestMapping(value = "/push", method = RequestMethod.POST)
     public Result push(@ApiParam(name = "topic", value = "任务类型", required = true) @RequestParam("topic") String topic,
                        @ApiParam(name = "delayTime", value = "延迟任务执行时间（13位时间时间戳）", required = true) @RequestParam("delayTime") Long delayTime,
                        @ApiParam(name = "ttrTime", value = "延迟任务执行超时时间（单位：秒）", required = true) @RequestParam("ttrTime") Long ttrTime,
@@ -36,14 +36,14 @@ public class DelayQueueController {
     }
 
     @ApiOperation("轮询队列获取任务")
-    @RequestMapping(value = "/pop/{topic}",method = RequestMethod.GET)
+    @RequestMapping(value = "/pop/{topic}", method = RequestMethod.GET)
     public Result pop(@PathVariable("topic") String topic) {
         DelayQueueJob delayQueueJob = DelayQueue.pop(topic);
-        return Result.sucess().put("data",delayQueueJob);
+        return Result.sucess().put("data", delayQueueJob);
     }
 
     @ApiOperation("完成任务")
-    @RequestMapping(value = "/finish",method = RequestMethod.POST)
+    @RequestMapping(value = "/finish", method = RequestMethod.POST)
     public Result finish(@ApiParam(name = "id", value = "任务id", required = true) @RequestParam("id") Long id) {
         DelayQueue.finish(id);
         return Result.sucess();

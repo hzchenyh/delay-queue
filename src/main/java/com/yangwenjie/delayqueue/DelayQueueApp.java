@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Yang WenJie
  * @date 2018/1/27 下午10:09
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = { "com.yangwenjie.delayqueue" })
 public class DelayQueueApp {
 
     public static void main(String[] args) {

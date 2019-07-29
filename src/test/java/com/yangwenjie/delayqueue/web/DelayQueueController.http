@@ -1,0 +1,23 @@
+###
+POST http://localhost:8888/push
+Content-type: application/x-www-form-urlencoded
+
+topic=ORDER_CREATE&delayTime=1564126110631&ttrTime=10&message=msgContent
+
+###
+
+
+
+###
+GET http://localhost:8888/pop/aa
+Accept: */*
+Content-type: application/json
+
+###
+
+###
+POST http://localhost:8888/test/fun1
+Content-type: application/json
+
+###
+

@@ -1,4 +1,4 @@
-package com.yangwenjie.delayqueue.test;
+package com.yangwenjie.delayqueue;
 
 import com.yangwenjie.delayqueue.core.DelayBucket;
 import com.yangwenjie.delayqueue.core.ScoredSortedItem;

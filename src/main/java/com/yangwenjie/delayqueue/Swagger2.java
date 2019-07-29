@@ -33,7 +33,7 @@ public class Swagger2 {
         return new ApiInfoBuilder()
                 .title(" Internet-Queuing restful apis")
                 .description("延迟消息队列接口文档")
-                 .termsOfServiceUrl("https://github.com/yangwenjie88/delay-queue")
+                .termsOfServiceUrl("https://github.com/yangwenjie88/delay-queue")
                 .contact("Yang WenJie")
                 .version("1.0")
                 .build();

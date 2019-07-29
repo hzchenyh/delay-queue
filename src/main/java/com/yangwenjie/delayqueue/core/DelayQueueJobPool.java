@@ -5,6 +5,7 @@ import org.redisson.api.RMap;
 
 /**
  * 延迟任务池
+ *
  * @author Yang WenJie
  * @date 2018/1/27 上午1:35
  */
@@ -14,6 +15,7 @@ public class DelayQueueJobPool {
 
     /**
      * 查询 DelayQueueJod
+     *
      * @param delayQueueJodId
      * @return
      */
@@ -24,6 +26,7 @@ public class DelayQueueJobPool {
 
     /**
      * 添加 DelayQueueJod
+     *
      * @param delayQueueJob
      */
     public static void addDelayQueueJod(DelayQueueJob delayQueueJob) {
@@ -33,6 +36,7 @@ public class DelayQueueJobPool {
 
     /**
      * 删除 DelayQueueJod
+     *
      * @param delayQueueJodId
      */
     public static void deleteDelayQueueJod(long delayQueueJodId) {
