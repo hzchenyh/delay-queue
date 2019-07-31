@@ -31,6 +31,7 @@ public class DelayBucketHandler implements Runnable {
     public void run() {
         while (true) {
             try {
+//                log.info(Thread.currentThread().getName()+"轮训...");
                 ScoredSortedItem item = DelayBucket.getFromBucket(this.delayBucketKey);
                 // 没有任务
                 if (item == null) {
@@ -70,7 +71,7 @@ public class DelayBucketHandler implements Runnable {
 
     private void sleep() {
         try {
-            TimeUnit.SECONDS.sleep(1L);
+            TimeUnit.SECONDS.sleep(5L);
         } catch (InterruptedException e) {
             log.error("", e);
         }

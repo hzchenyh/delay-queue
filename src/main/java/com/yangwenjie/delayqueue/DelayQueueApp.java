@@ -1,8 +1,9 @@
 package com.yangwenjie.delayqueue;
 
-import com.yangwenjie.delayqueue.listener.ApplicationStartup;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.yangwenjie.delayqueue.listener.ApplicationStartup;
 
 /**
  * @author Yang WenJie

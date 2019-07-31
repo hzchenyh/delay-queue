@@ -1,9 +1,16 @@
 server:
-  port: 8888
+  port: 8080
   connection-timeout: 5000
-#  context-path: /springboot
+  servlet:
+    # 应用的访问路径
+    context-path: /
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
+# 日志配置
+logging:
+  level:
+    org.springframework: debug
+    com.yangwenjie.delayqueue: INFO

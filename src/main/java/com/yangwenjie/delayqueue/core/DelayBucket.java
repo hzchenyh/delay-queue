@@ -19,9 +19,9 @@ public class DelayBucket {
      * @param key
      * @param scoredSortedItem
      */
-    public static void addToBucket(String key,ScoredSortedItem scoredSortedItem) {
+    public static void addToBucket(String key, ScoredSortedItem scoredSortedItem) {
         RScoredSortedSet<ScoredSortedItem> scoredSorteSet = RedissonUtils.getScoredSorteSet(key);
-        scoredSorteSet.add(scoredSortedItem.getDelayTime(),scoredSortedItem);
+        scoredSorteSet.add(scoredSortedItem.getDelayTime(), scoredSortedItem);
     }
 
     /**

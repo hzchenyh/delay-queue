@@ -16,12 +16,13 @@ public class DelayQueue {
     public static final long  DELAY_BUCKET_NUM = 10L;
 
     /**
+     * 根据jobId取模值确定放入哪个bucket
      * 获取delayBucket key 分开多个，有利于提高效率
      * @param delayQueueJodId
      * @return
      */
     private static String getDelayBucketKey(long delayQueueJodId) {
-        return DELAY_BUCKET_KEY_PREFIX+Math.floorMod(delayQueueJodId,DELAY_BUCKET_NUM);
+        return DELAY_BUCKET_KEY_PREFIX + Math.floorMod(delayQueueJodId, DELAY_BUCKET_NUM);
     }
 
     /**
@@ -29,9 +30,14 @@ public class DelayQueue {
      * @param delayQueueJob
      */
     public static void push(DelayQueueJob delayQueueJob) {
+
+        // 1、将job放入任务池
         DelayQueueJobPool.addDelayQueueJod(delayQueueJob);
+
+        // 2、将score和jobItem放入ZSET
         ScoredSortedItem item = new ScoredSortedItem(delayQueueJob.getId(), delayQueueJob.getDelayTime());
-        DelayBucket.addToBucket(getDelayBucketKey(delayQueueJob.getId()),item);
+        String bucketName = getDelayBucketKey(delayQueueJob.getId());
+        DelayBucket.addToBucket(bucketName, item);
     }
 
     /**
@@ -40,6 +46,7 @@ public class DelayQueue {
      * @return
      */
     public static DelayQueueJob pop(String topic) {
+
         Long delayQueueJodId = ReadyQueue.pollFormReadyQueue(topic);
         if (delayQueueJodId == null) {
             return null;

@@ -22,16 +22,18 @@ public class DelayQueueController {
     @ApiOperation("添加延迟任务")
     @RequestMapping(value = "/push", method = RequestMethod.POST)
     public Result push(@ApiParam(name = "topic", value = "任务类型", required = true) @RequestParam("topic") String topic,
-                       @ApiParam(name = "delayTime", value = "延迟任务执行时间（13位时间时间戳）", required = true) @RequestParam("delayTime") Long delayTime,
+//                       @ApiParam(name = "delayTime", value = "延迟任务执行时间（13位时间时间戳）", required = true) @RequestParam("delayTime") Long delayTime,
                        @ApiParam(name = "ttrTime", value = "延迟任务执行超时时间（单位：秒）", required = true) @RequestParam("ttrTime") Long ttrTime,
                        @ApiParam(name = "message", value = "消息内容", required = true) @RequestParam("message") String message) {
         DelayQueueJob delayQueueJob = new DelayQueueJob();
         delayQueueJob.setTopic(topic);
-        delayQueueJob.setDelayTime(delayTime);
+        delayQueueJob.setDelayTime(System.currentTimeMillis() + 30 * 1000);
         delayQueueJob.setMessage(message);
         delayQueueJob.setTtrTime(ttrTime);
         delayQueueJob.setId(idUtil.nextId());
+
         DelayQueue.push(delayQueueJob);
+
         return Result.sucess();
     }
 
